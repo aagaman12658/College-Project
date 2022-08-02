@@ -50,11 +50,11 @@ int newentry()
 
 	struct newstud s;
 	struct studentdata s1[200];
-	gotoxy(75,5);
+	gotoxy(45,5);
 	printf("Enter year: ");
 	scanf("%d",&s.year);
 	fprintf(NE, "%d",s.year);
-	gotoxy(75,7);
+	gotoxy(45,7);
 	printf("Enter department: ");
 	scanf("%s",&s.department);
 	fprintf(NE, "\n%s",s.department);
@@ -63,17 +63,17 @@ int newentry()
 	while(choice!='C')
 	{
 		system("cls");
-		gotoxy(75,5);
+		gotoxy(45,5);
 		printf("Enter name: ");
 		scanf("%s",s1[i].name);
 
 
-		gotoxy(75,7);
+		gotoxy(45,7);
 		printf("Enter roll number: ");
 		scanf("%s",s1[i].rollno);
 
 
-		gotoxy(75,9);
+		gotoxy(45,9);
 		printf("Enter section: " );
 		scanf("%s",s1[i].section);
 
@@ -94,11 +94,11 @@ int newentry()
 }
 int entryORattendance()
 {
-    system("color, f0");
+    system("color f0");
 	int fate;
-	gotoxy(75,18);
+	gotoxy(45,18);
 	printf("1) Press 1 to enter data of new students: ");
-	gotoxy(75,20);
+	gotoxy(45,20);
 	printf("2) Press 2 to take attendance: ");
 	scanf("%d",&fate);
 

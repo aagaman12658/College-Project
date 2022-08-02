@@ -33,6 +33,7 @@
 		</Compiler>
 		<Unit filename="../attendanceprog.h" />
 		<Unit filename="../loginNregister.cpp" />
+		<Unit filename="../studentdatabase.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

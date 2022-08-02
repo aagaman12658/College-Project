@@ -24,16 +24,17 @@
 	<string.h>
 	<windows.h>
 
-1659427135 source:c:\all\collegeproject\loginnregister.cpp
+1659457878 source:c:\all\collegeproject\loginnregister.cpp
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 	<windows.h>
 	<time.h>
+	<graphics.h>
 	"attendanceprog.h"
 	"studentdatabase.h"
 
-1659427162 c:\all\collegeproject\studentdatabase.h
+1659456819 c:\all\collegeproject\studentdatabase.h
 	<stdio.h>
 	<conio.h>
 	<windows.h>

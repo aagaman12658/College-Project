@@ -3,8 +3,12 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <time.h>
+#include <graphics.h>
 #include "attendanceprog.h"
 #include "studentdatabase.h"
+#define TAB 9
+#define ENTER 13
+#define BCKSPC 8
 
 
 
@@ -18,6 +22,35 @@ struct login                           // before the first use of `l`.
 
 void login (void);
 void registration (void);
+
+void takepassword(char pwd[50])
+{
+    int i=0;
+    char ch='0';
+    while (1)
+    {
+        ch = _getch();
+        if (ch == ENTER || ch == TAB)
+        {
+            pwd[i] = '\0';
+            break;
+        }
+        else if (ch == BCKSPC)
+        {
+            if (i > 0)
+            {
+                i--;
+                printf("\b \b");
+            }
+        }
+        else
+        {
+            pwd[i] = ch;
+            printf("* \b");
+            i++;
+        }
+    }
+}
 
 
 void delay(int number_of_seconds)
@@ -35,20 +68,19 @@ void delay(int number_of_seconds)
 
 int main (void)
 {
-
     system("color f0");
     int option;
-    gotoxy(75,20);
+    gotoxy(55,20);
     printf("%c Attendance Register",254);
     delay(4);
     system("cls");
-    gotoxy(75,01);
+    gotoxy(55,01);
     printf("%c Attendance Register",254);
-    gotoxy(75,18);
+    gotoxy(55,18);
     printf("> Press '1' to Register");
-    gotoxy(75,20);
+    gotoxy(55,20);
     printf("> Press '2' to Login");
-    gotoxy(75,22);
+    gotoxy(55,22);
     printf("%c  ",175);
     scanf("%d",&option);
 
@@ -94,7 +126,7 @@ void login (void)
     scanf("%s",username);
     fflush(stdin);
     printf("\nPassword: ");
-    scanf("%s",password);
+    takepassword(password);
 
 
     while(fread(&l,sizeof(l),1,log))
@@ -125,7 +157,7 @@ void registration(void)
     char firstname[15];
     char ab, choice, cd;
     FILE *log;
-
+    FILE *fp;
     log=fopen("login.txt","w");
     if (log == NULL)
     {
@@ -135,75 +167,68 @@ void registration(void)
 
 
     struct login l,l1;
-    gotoxy(45,01);
+    gotoxy(25,01);
     printf("Welcome to your registration portal. We need to enter some details for registration.");
-    gotoxy(75,04);
+    gotoxy(55,04);
     printf("Enter First Name:");
     scanf("%s",l.fname);
     fflush(stdin);
-    gotoxy(75,07);
+    gotoxy(55,07);
     printf("Enter Surname:");
     scanf("%s",l.lname);
     fflush(stdin);
-    gotoxy(75,10);
+    gotoxy(55,10);
     printf("Thank you.");
-    gotoxy(35,12);
+    gotoxy(5,12);
     printf("i) Now please choose a username and password as credentials for system login.");
-    gotoxy(35,14);
+    gotoxy(5,14);
     printf("ii)Ensure the username is no more than 30 characters long.");
-    gotoxy(35,16);
+    gotoxy(5,16);
     printf("iii)Ensure your password is at least 8 characters long and contains lowercase, uppercase, numerical and special character values.\n");
-    gotoxy(75,20);
+    gotoxy(55,20);
     printf("Enter Username:");
     scanf("%s",l.username);
     fflush(stdin);
-    do
-    {
-        if (choice=='Y'||choice=='y')
-            system("cls");
-        Start:
-        gotoxy(75,23);
-        printf("Enter Password:");
-        fflush(stdin);
-        k=0;
-        while((ab=_getch())!=13)
+
+    AGAIN:
+        if (k==0)
         {
-            l.password[k]=ab;
-            k++;
-            ab='*';
-            printf("%c",ab);
+            gotoxy(55,23);
+            printf("Enter your password:        ");
         }
-        l.password[k]='\0';
-        fflush(stdin);
-        gotoxy(75,24);
-        printf("Confirm Password:");
-        k=0;
-        while((cd=_getch())!=13)
+        if (k==1)
         {
-            l1.password[k]=cd;
-            k++;
-            cd='*';
-            printf("%c",cd);
+            gotoxy(55,20);
+            printf("Enter your password:        ");
         }
-        l1.password[k]='\0';
-        if (strcmp(l.password,l1.password)!=0)
+
+        takepassword(l.password);
+        printf("\n");
+        if (k==0)
         {
-            gotoxy(75,25);
+            gotoxy(55,24);
+            printf("Confirm your password:      ");
+        }
+         if (k==1)
+        {
+            gotoxy(55,21);
+            printf("Confirm your password:      ");
+        }
+        takepassword(l1.password);
+
+      if (strcmp(l.password,l1.password)!=0)
+        {
+            gotoxy(55,25);
             printf("Passwords do not match. Please try again!");
             delay(3);
+            k=1;
             system("cls");
-            goto Start;
+            goto AGAIN;
         }
-        fflush(stdin);
-        gotoxy(75,25);
-        printf("Do you want to re-enter password?(Y/N)");
-        scanf("%c",&choice);
-        }while(choice=='Y'||choice=='y');
-
 
     fwrite(&l,sizeof(l),1,log);
     fclose(log);
-    gotoxy(55,26);
+    gotoxy(35,26);
     printf("Confirming details.");
     delay(1);
     printf(".");
@@ -216,11 +241,11 @@ void registration(void)
         printf("%c",l.fname[i]);
     }
     delay(2);
-    gotoxy(55,28);
+    gotoxy(35,28);
     printf("Registration Successful!");
     fflush(stdin);
     delay(2);
-    gotoxy(55,30);
+    gotoxy(35,30);
     printf("Press any key to continue...");
         getchar();
     system("CLS");
