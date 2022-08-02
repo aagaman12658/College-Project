@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1659382279 source:c:\all\collegeproject\attendanceprog.c
+	<stdio.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+
+1659383148 source:c:\all\collegeproject\loginnregister.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<windows.h>
+	"attendanceprog.h"
+
+1659382279 c:\all\collegeproject\attendanceprog.c
+	<stdio.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+
+1659382921 c:\all\collegeproject\attendanceprog.h
+	<stdio.h>
+	<conio.h>
+	<string.h>
+	<windows.h>
+
+1659427135 source:c:\all\collegeproject\loginnregister.cpp
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<windows.h>
+	<time.h>
+	"attendanceprog.h"
+	"studentdatabase.h"
+
+1659427162 c:\all\collegeproject\studentdatabase.h
+	<stdio.h>
+	<conio.h>
+	<windows.h>
+	"attendanceprog.h"
+
